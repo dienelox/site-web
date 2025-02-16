@@ -3,44 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artem | Bio</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Code">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <title>Artem | Digital Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         :root {
-            --gray-border: #666666;
+            --accent: #2A2A2A;
+            --bg: #0F0F0F;
+            --text: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: 
-                radial-gradient(circle at 50% 50%, rgba(102,102,102,0.3) 0%, transparent 20%),
-                black url("https://i.pinimg.com/originals/25/53/b9/2553b9a62d4c359665abd6205e243fa6.gif") center/cover;
-            backdrop-filter: blur(5px);
-            font-family: 'Fira Code', monospace;
-            color: white;
+            background: var(--bg);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .card {
+            background: rgba(15, 15, 15, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            margin: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        body::before {
+        .card::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: 
-                linear-gradient(45deg, transparent 48%, var(--gray-border) 50%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, var(--gray-border) 50%, transparent 52%);
-            background-size: 1em 1em;
-            opacity: 0.1;
-            animation: grid 20s linear infinite;
+            background: linear-gradient(45deg, 
+                transparent 48%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                transparent 52%);
+            animation: grid 12s linear infinite;
+            z-index: -1;
         }
 
         @keyframes grid {
@@ -48,197 +63,121 @@
             100% { transform: translate(1em,1em); }
         }
 
-        .container {
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 15px;
-            padding: 2px;
-            margin: 20px;
-            box-shadow: 0 0 15px var(--gray-border);
-            position: relative;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--gray-border);
-        }
-
-        .card {
-            position: relative;
-            padding: 2rem 1.5rem;
-            border-radius: 13px;
-            max-width: 320px;
-            background: rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-        }
-
         .avatar {
-            width: 110px;
-            height: 110px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             object-fit: cover;
-            border: 2px solid var(--gray-border);
-            box-shadow: 0 0 15px var(--gray-border);
-            transition: transform 0.3s;
+            border: 2px solid var(--accent);
+            transition: transform 0.3s ease;
         }
 
         .avatar:hover {
-            transform: rotate(5deg) scale(1.05);
+            transform: rotate(8deg) scale(1.05);
         }
 
-        .username {
+        .name {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .name h1 {
             font-size: 1.8rem;
-            margin: 0 0 1.5rem;
-            color: var(--gray-border);
-            text-shadow: 0 0 10px var(--gray-border);
-            font-family: 'Roboto Mono';
-            position: relative;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
         }
 
-        .bio-info {
-            text-align: left;
-            margin: 1rem 0;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            border: 1px solid var(--gray-border);
+        .bio-grid {
+            display: grid;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
         }
 
         .bio-item {
-            margin: 0.8rem 0;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .bio-item:hover {
+            transform: translateX(8px);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .bio-item i {
-            color: var(--gray-border);
             font-size: 1.2rem;
+            margin-right: 1rem;
+            color: var(--accent);
         }
 
-        .links {
-            display: grid;
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 0.8rem;
-            margin-top: 2rem;
-        }
-
-        .link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem;
+            padding: 1rem;
+            background: rgba(42, 42, 42, 0.3);
             border-radius: 50px;
-            background: rgba(102,102,102,0.3);
-            border: 1px solid var(--gray-border);
-            color: white;
+            color: var(--text);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .link:hover {
-            background: rgba(102,102,102,0.5);
-            box-shadow: 0 0 15px var(--gray-border);
+        .social-link:hover {
+            background: var(--accent);
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(42, 42, 42, 0.4);
         }
 
-        .sound-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--gray-border);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .sound-btn:hover {
-            background: var(--gray-border);
-            box-shadow: 0 0 15px var(--gray-border);
-        }
-
-        .sound-btn i {
-            color: white;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .sound-btn:hover i {
-            color: black;
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <button class="sound-btn" onclick="toggleSound()">
-                <i id="sound-icon" class="bi bi-volume-up"></i>
-            </button>
-            
-            <img src="https://0x0.st/s/0RzNge0aFd2M8pdyPGKU1Q/8Xvw.jpg" alt="Artem" class="avatar">
-            
-            <h1 class="username">Artem</h1>
-            
-            <div class="bio-info">
-                <div class="bio-item">
-                    <i class="bi bi-gender-male"></i>
-                    <span>Male</span>
-                </div>
-                <div class="bio-item">
-                    <i class="bi bi-geo-alt"></i>
-                    <span>Russia</span>
-                </div>
-                <div class="bio-item">
-                    <i class="bi bi-calendar-heart"></i>
-                    <span>Birthday: 26.?</span>
-                </div>
-                <div class="bio-item">
-                    <i class="bi bi-code-square"></i>
-                    <span>Learning Python</span>
-                </div>
-                <div class="bio-item">
-                    <i class="bi bi-robot"></i>
-                    <span>Heroku Userbot</span>
-                </div>
-            </div>
+    <div class="card">
+        <img src="https://0x0.st/s/0RzNge0aFd2M8pdyPGKU1Q/8Xvw.jpg" alt="Artem" class="avatar">
+        
+        <div class="name">
+            <h1>Artem</h1>
+        </div>
 
-            <div class="links">
-                <a href="https://t.me/kmoell" class="link">
-                    <i class="bi bi-telegram"></i>
-                    <span>Telegram</span>
-                </a>
+        <div class="bio-grid">
+            <div class="bio-item">
+                <i class="bi bi-gender-male"></i>
+                <span>Male</span>
+            </div>
+            <div class="bio-item">
+                <i class="bi bi-geo-alt"></i>
+                <span>Based in Russia</span>
+            </div>
+            <div class="bio-item">
+                <i class="bi bi-calendar3"></i>
+                <span>Birthday: 26th</span>
+            </div>
+            <div class="bio-item">
+                <i class="bi bi-code-square"></i>
+                <span>Python Developer</span>
+            </div>
+            <div class="bio-item">
+                <i class="bi bi-terminal"></i>
+                <span>Heroku Userbot</span>
             </div>
         </div>
+
+        <a href="https://t.me/kmoell" class="social-link">
+            <i class="bi bi-telegram"></i>
+            <span>Telegram Profile</span>
+        </a>
     </div>
-
-    <audio id="bg-music" loop>
-        <source src="https://0x0.st/s/RqxXwdnfg5VF8PY7rW_yfQ/8PjS.mp3" type="audio/mpeg">
-    </audio>
-
-    <script>
-        let isMuted = false;
-        const audio = document.getElementById('bg-music');
-        const soundIcon = document.getElementById('sound-icon');
-        
-        function toggleSound() {
-            isMuted = !isMuted;
-            audio.muted = isMuted;
-            soundIcon.className = isMuted ? 'bi bi-volume-mute' : 'bi bi-volume-up';
-            localStorage.setItem('soundMuted', isMuted);
-        }
-
-        window.onload = () => {
-            const savedState = localStorage.getItem('soundMuted') === 'true';
-            if(savedState) {
-                isMuted = true;
-                audio.muted = true;
-                soundIcon.className = 'bi bi-volume-mute';
-            } else {
-                audio.play().catch(() => {});
-            }
-        }
-    </script>
 </body>
 </html>
