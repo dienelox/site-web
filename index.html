@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         :root {
-            --neon-gold: rgba(218, 203, 0, 0.8);
-            --neon-purple: rgba(155, 0, 155, 0.8);
+            --gray-border: #666666;
         }
 
         body {
@@ -20,7 +19,7 @@
             justify-content: center;
             align-items: center;
             background: 
-                radial-gradient(circle at 50% 50%, var(--neon-purple) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(102,102,102,0.3) 0%, transparent 20%),
                 black url("https://i.pinimg.com/originals/25/53/b9/2553b9a62d4c359665abd6205e243fa6.gif") center/cover;
             backdrop-filter: blur(5px);
             font-family: 'Fira Code', monospace;
@@ -37,8 +36,8 @@
             width: 200%;
             height: 200%;
             background: 
-                linear-gradient(45deg, transparent 48%, var(--neon-gold) 50%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, var(--neon-purple) 50%, transparent 52%);
+                linear-gradient(45deg, transparent 48%, var(--gray-border) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, var(--gray-border) 50%, transparent 52%);
             background-size: 1em 1em;
             opacity: 0.1;
             animation: grid 20s linear infinite;
@@ -54,11 +53,10 @@
             border-radius: 15px;
             padding: 2px;
             margin: 20px;
-            box-shadow: 
-                0 0 15px var(--neon-purple),
-                0 0 30px var(--neon-gold) inset;
+            box-shadow: 0 0 15px var(--gray-border);
             position: relative;
             backdrop-filter: blur(10px);
+            border: 1px solid var(--gray-border);
         }
 
         .card {
@@ -76,10 +74,8 @@
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             object-fit: cover;
-            border: 2px solid var(--neon-gold);
-            box-shadow: 
-                0 0 15px var(--neon-gold),
-                0 0 30px var(--neon-purple);
+            border: 2px solid var(--gray-border);
+            box-shadow: 0 0 15px var(--gray-border);
             transition: transform 0.3s;
         }
 
@@ -90,8 +86,8 @@
         .username {
             font-size: 1.8rem;
             margin: 0 0 1.5rem;
-            color: var(--neon-gold);
-            text-shadow: 0 0 10px var(--neon-gold);
+            color: var(--gray-border);
+            text-shadow: 0 0 10px var(--gray-border);
             font-family: 'Roboto Mono';
             position: relative;
         }
@@ -102,7 +98,7 @@
             padding: 1rem;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--gray-border);
         }
 
         .bio-item {
@@ -113,9 +109,8 @@
         }
 
         .bio-item i {
-            color: var(--neon-gold);
+            color: var(--gray-border);
             font-size: 1.2rem;
-            filter: drop-shadow(0 0 2px var(--neon-gold));
         }
 
         .links {
@@ -130,42 +125,17 @@
             justify-content: center;
             padding: 0.8rem;
             border-radius: 50px;
-            background: rgba(155, 0, 155, 0.3);
-            border: 1px solid var(--neon-purple);
+            background: rgba(102,102,102,0.3);
+            border: 1px solid var(--gray-border);
             color: white;
             text-decoration: none;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .link::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, var(--neon-gold), transparent);
-            transform: rotate(45deg);
-            opacity: 0;
-            transition: opacity 0.5s;
         }
 
         .link:hover {
-            background: rgba(218, 203, 0, 0.2);
-            box-shadow: 0 0 15px var(--neon-gold);
+            background: rgba(102,102,102,0.5);
+            box-shadow: 0 0 15px var(--gray-border);
             transform: translateY(-2px);
-        }
-
-        .link:hover::before {
-            opacity: 0.2;
-            animation: shine 1.5s;
-        }
-
-        @keyframes shine {
-            0% { transform: translate(-150%, -50%) rotate(45deg); }
-            100% { transform: translate(150%, 150%) rotate(45deg); }
         }
 
         .sound-btn {
@@ -173,7 +143,7 @@
             top: 1rem;
             right: 1rem;
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--neon-gold);
+            border: 1px solid var(--gray-border);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -185,8 +155,8 @@
         }
 
         .sound-btn:hover {
-            background: var(--neon-gold);
-            box-shadow: 0 0 15px var(--neon-gold);
+            background: var(--gray-border);
+            box-shadow: 0 0 15px var(--gray-border);
         }
 
         .sound-btn i {
@@ -259,7 +229,6 @@
             localStorage.setItem('soundMuted', isMuted);
         }
 
-        // Сохраняем состояние звука при перезагрузке
         window.onload = () => {
             const savedState = localStorage.getItem('soundMuted') === 'true';
             if(savedState) {
